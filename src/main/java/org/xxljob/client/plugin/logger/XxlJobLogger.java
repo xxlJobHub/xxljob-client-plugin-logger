@@ -42,7 +42,7 @@ public class XxlJobLogger {
     /**
      * 完全限定类名，用于获取调用方信息
      */
-    private final static String FCQN = XxlJobLogger.class.getName();
+    private final static String FQCN = XxlJobLogger.class.getName();
 
     /**
      * 当前进程pid
@@ -125,26 +125,40 @@ public class XxlJobLogger {
     /**
      * 输出日志
      *
-     * @param fcqn    调用者类
-     * @param level   日志级别
-     * @param message 日志信息
-     * @param ex      异常
-     * @param args    参数
+     * @param fqcn        调用者类
+     * @param slf4jLogger slf4jLogger
+     * @param level       日志级别
+     * @param message     日志信息
+     * @param ex          异常
+     * @param args        参数
      */
-    public void log(Class<?> fcqn, Level level, String message, Throwable ex, Object... args) {
-        this.handlerNormalizedMessage(fcqn.getName(), level, message, args, ex);
+    public void log(Class<?> fqcn, Logger slf4jLogger, Level level, String message, Throwable ex, Object[] args) {
+        this.handlerNormalizedMessage(fqcn.getName(), slf4jLogger, level, message, args, ex);
     }
 
     /**
      * 输出日志
      *
-     * @param fcqn    调用者类
+     * @param fqcn    调用者类
+     * @param level   日志级别
+     * @param message 日志信息
+     * @param ex      异常
+     * @param args    参数
+     */
+    public void log(Class<?> fqcn, Level level, String message, Throwable ex, Object... args) {
+        this.handlerNormalizedMessage(fqcn.getName(), level, message, args, ex);
+    }
+
+    /**
+     * 输出日志
+     *
+     * @param fqcn    调用者类
      * @param level   日志级别
      * @param message 日志信息
      * @param args    参数
      */
-    public void log(Class<?> fcqn, Level level, String message, Object... args) {
-        this.handlerNormalizedMessage(fcqn.getName(), level, message, args, null);
+    public void log(Class<?> fqcn, Level level, String message, Object... args) {
+        this.handlerNormalizedMessage(fqcn.getName(), level, message, args, null);
     }
 
     /**
@@ -154,7 +168,19 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void trace(String message, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.TRACE, message, args, null);
+        this.handlerNormalizedMessage(FQCN, Level.TRACE, message, args, null);
+    }
+
+    /**
+     * 输出{@code trace}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param message     日志信息
+     * @param slf4jLogger slf4jLogger
+     * @param args        参数
+     */
+    public void trace(String fqcn, Logger slf4jLogger, String message, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.TRACE, message, args, null);
     }
 
     /**
@@ -165,7 +191,20 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void trace(String message, Throwable ex, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.TRACE, message, args, ex);
+        this.handlerNormalizedMessage(FQCN, Level.TRACE, message, args, ex);
+    }
+
+    /**
+     * 输出{@code trace}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param ex          异常
+     * @param args        参数
+     */
+    public void trace(String fqcn, Logger slf4jLogger, String message, Throwable ex, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.TRACE, message, args, ex);
     }
 
     /**
@@ -175,7 +214,19 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void debug(String message, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.DEBUG, message, args, null);
+        this.handlerNormalizedMessage(FQCN, Level.DEBUG, message, args, null);
+    }
+
+    /**
+     * 输出{@code debug}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param args        参数
+     */
+    public void debug(String fqcn, Logger slf4jLogger, String message, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.DEBUG, message, args, null);
     }
 
     /**
@@ -186,7 +237,20 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void debug(String message, Throwable ex, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.DEBUG, message, args, ex);
+        this.handlerNormalizedMessage(FQCN, Level.DEBUG, message, args, ex);
+    }
+
+    /**
+     * 输出{@code debug}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param ex          异常
+     * @param args        参数
+     */
+    public void debug(String fqcn, Logger slf4jLogger, String message, Throwable ex, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.DEBUG, message, args, ex);
     }
 
     /**
@@ -196,8 +260,21 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void info(String message, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.INFO, message, args, null);
+        this.handlerNormalizedMessage(FQCN, Level.INFO, message, args, null);
     }
+
+    /**
+     * 输出{@code info}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param args        参数
+     */
+    public void info(String fqcn, Logger slf4jLogger, String message, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.INFO, message, args, null);
+    }
+
 
     /**
      * 输出{@code info}日志
@@ -207,7 +284,20 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void info(String message, Throwable ex, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.INFO, message, args, ex);
+        this.handlerNormalizedMessage(FQCN, Level.INFO, message, args, ex);
+    }
+
+    /**
+     * 输出{@code info}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param ex          异常
+     * @param args        参数
+     */
+    public void info(String fqcn, Logger slf4jLogger, String message, Throwable ex, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.INFO, message, args, ex);
     }
 
     /**
@@ -217,8 +307,21 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void warn(String message, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.WARN, message, args, null);
+        this.handlerNormalizedMessage(FQCN, Level.WARN, message, args, null);
     }
+
+    /**
+     * 输出{@code warn}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param args        参数
+     */
+    public void warn(String fqcn, Logger slf4jLogger, String message, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.WARN, message, args, null);
+    }
+
 
     /**
      * 输出{@code warn}日志
@@ -228,7 +331,20 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void warn(String message, Throwable ex, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.WARN, message, args, ex);
+        this.handlerNormalizedMessage(FQCN, Level.WARN, message, args, ex);
+    }
+
+    /**
+     * 输出{@code warn}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param ex          异常
+     * @param args        参数
+     */
+    public void warn(String fqcn, Logger slf4jLogger, String message, Throwable ex, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.WARN, message, args, ex);
     }
 
     /**
@@ -238,8 +354,21 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void error(String message, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.ERROR, message, args, null);
+        this.handlerNormalizedMessage(FQCN, Level.ERROR, message, args, null);
     }
+
+    /**
+     * 输出{@code error}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param args        参数
+     */
+    public void error(String fqcn, Logger slf4jLogger, String message, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.ERROR, message, args, null);
+    }
+
 
     /**
      * 输出{@code error}日志
@@ -249,18 +378,32 @@ public class XxlJobLogger {
      * @param args    参数
      */
     public void error(String message, Throwable ex, Object... args) {
-        this.handlerNormalizedMessage(FCQN, Level.ERROR, message, args, ex);
+        this.handlerNormalizedMessage(FQCN, Level.ERROR, message, args, ex);
+    }
+
+    /**
+     * 输出{@code error}日志
+     *
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param ex          异常
+     * @param args        参数
+     */
+    public void error(String fqcn, Logger slf4jLogger, String message, Throwable ex, Object... args) {
+        this.handlerNormalizedMessage(fqcn, slf4jLogger, Level.ERROR, message, args, ex);
     }
 
     /**
      * 追加到xxlJob日志文件，当前不是xxlJob任务调用，直接忽略
      *
-     * @param fqcn    完全限定类名
-     * @param message 日志信息
-     * @param args    参数
-     * @param e       异常
+     * @param fqcn        完全限定类名
+     * @param slf4jLogger slf4jLogger
+     * @param message     日志信息
+     * @param args        参数
+     * @param e           异常
      */
-    private void handlerNormalizedMessage(String fqcn, Level level, String message, Object[] args, Throwable e) {
+    private void handlerNormalizedMessage(String fqcn, Logger slf4jLogger, Level level, String message, Object[] args, Throwable e) {
         final XxlJobContext xxlJobContext = XxlJobContext.getXxlJobContext();
         if (xxlJobContext == null) {
             return;
@@ -272,7 +415,12 @@ public class XxlJobLogger {
         }
 
         final StackTraceElement caller = this.getCaller(fqcn);
-        final Logger logger = this.getLogger(caller);
+        // 优先使用 slf4jLogger
+        Logger logger = slf4jLogger;
+        if (null == logger) {
+            logger = this.getLogger(caller);
+        }
+
         // 日志级别忽略，忽略规则同调用方Logger
         if (!this.isLevelEnabled(level, logger)) {
             return;
@@ -291,6 +439,18 @@ public class XxlJobLogger {
         this.markMessage(message, args, e, log);
 
         XxlJobFileAppender.appendLog(logFileName, log.toString());
+    }
+
+    /**
+     * 追加到xxlJob日志文件，当前不是xxlJob任务调用，直接忽略
+     *
+     * @param fqcn    完全限定类名
+     * @param message 日志信息
+     * @param args    参数
+     * @param e       异常
+     */
+    private void handlerNormalizedMessage(String fqcn, Level level, String message, Object[] args, Throwable e) {
+        this.handlerNormalizedMessage(fqcn, null, level, message, args, e);
     }
 
 
